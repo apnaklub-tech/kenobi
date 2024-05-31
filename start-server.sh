@@ -10,11 +10,11 @@ WORKER_MAX_REQUEST="${GUNICORN_WORKER_MAX_REQUEST:-100000}"
 WORKER_MAX_REQUEST_JITTER="${GUNICORN_WORKER_MAX_REQUEST_JITTER:-10000}"
 WORKER_TIMEOUT="${GUNICORN_WORKER_TIMEOUT:-120}"
 
-echo "Setting up DB..."
-sh setup_db.sh
+#echo "Setting up DB..."
+#bash setup_db.sh
 
-echo "Setting up Clickhouse DB..."
-python setup_clickhouse.py
+#echo "Setting up Clickhouse DB..."
+#python setup_clickhouse.py
 
 echo "Starting Server..."
 
