@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
   clickhouse:
+    restart: unless-stopped
     image: clickhouse/clickhouse-server:22.6-alpine
     ports:
       - "8123:8123"
@@ -74,6 +75,7 @@ services:
       "
       
   db:
+    restart: unless-stopped
     image: postgres:11
     environment:
       - "POSTGRES_DB=db"
@@ -87,6 +89,7 @@ services:
       - mynetwork
 
   cache:
+    restart: unless-stopped
     image: 'redis:alpine'
     ports:
       - '6379:6379'
@@ -127,6 +130,7 @@ services:
       - mynetwork
 
   server:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
@@ -167,6 +171,7 @@ services:
       - mynetwork
 
   zookeeper:
+    restart: unless-stopped
     image: confluentinc/cp-zookeeper:6.1.1
     platform: linux/amd64
     ports:
@@ -177,6 +182,7 @@ services:
       - mynetwork
 
   kafka:
+    restart: unless-stopped
     image: confluentinc/cp-kafka:6.1.1
     platform: linux/amd64
     depends_on:
@@ -218,6 +224,7 @@ services:
       - mynetwork
 
   raw-events-consumer:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
@@ -258,6 +265,7 @@ services:
       - mynetwork
 
   raw-monitor-transactions-consumer:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
@@ -298,6 +306,7 @@ services:
       - mynetwork
 
   processed-events-consumer:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
@@ -338,6 +347,7 @@ services:
       - mynetwork
 
   celery_beat:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
@@ -371,6 +381,7 @@ services:
       - mynetwork
 
   celery_worker:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
@@ -404,6 +415,7 @@ services:
       - mynetwork
 
   webvault:
+    restart: unless-stopped
     image: webvault:latest
     ports:
       - '80:80'
